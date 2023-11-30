@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:wght@700;900&display=swap"
+    rel="stylesheet">
+
+  <style>
+
+    :root {
+
+/** cores **/
+
+--russian-violet: hsl(269, 36%, 22%);
+--dark-purple: hsl(268, 22%, 15%);
+--eerie-black: hsl(240, 4%, 10%);
+--davys-gray: hsl(0, 0%, 34%);
+--light-gray: hsl(0, 0%, 84%);
+--cultured-1: hsl(0, 0%, 98%);
+--cultured-2: hsl(280, 14%, 96%);
+--cultured-3: hsl(280, 9%, 94%);
+--gainsboro: hsl(0, 1%, 85%);
+--black_10: hsla(0, 0%, 0%, 0.1);
+--black_5: hsla(0, 0%, 0%, 0.05);
+--pumpkin: hsl(22, 90%, 56%);
+--white: hsl(0, 0%, 100%);
+--black: hsl(0, 0%, 0%);
+
+/** fontes **/
+
+--ff-poppins: 'Poppins', sans-serif;
+--ff-roboto: 'Roboto', sans-serif;
+
+--fs-1: 3rem;
+--fs-2: 2rem;
+--fs-3: 1.5rem;
+--fs-4: 1.4rem;
+--fs-5: 1.3rem;
+
+--fw-900: 900;
+--fw-700: 700;
+--fw-600: 600;
+--fw-500: 500;
+
+/** espaçamento **/
+
+--section-padding: 50px;
+
+/** box shadow **/
+
+--shadow-1: 0px 0px 20px var(--black_10);
+--shadow-2: 0 0 20px 4px var(--black_5);
+
+/** border radius **/
+
+--radius-6: 6px;
+--radius-10: 10px;
+
+/** transições **/
+
+--transition-1: 0.25s ease;
+--transition-2: 0.5s ease;
+--cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+--cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+
+}
+
+/*-----------------------------------*\
+#RESET
+\*-----------------------------------*/
+
+*,
+*::before,
+*::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+li {
+list-style: none;
+}
+
+a {
+text-decoration: none;
+color: inherit;
+}
+
+a,
+img,
+span,
+button,
+ion-icon {
+display: block;
+}
+
+img {
+height: auto;
+}
+
+button {
+background: none;
+border: none;
+font: inherit;
+cursor: pointer;
+}
+
+ion-icon {
+pointer-events: none;
+}
+
+address {
+font-style: normal;
+}
+
+html {
+font-family: var(--ff-poppins);
+font-size: 10px;
+scroll-behavior: smooth;
+}
+
+body {
+background-color: var(--white);
+font-size: 1.6rem;
+color: var(--davys-gray);
+}
+
+:focus-visible {
+outline-offset: 4px;
+}
+
+::-webkit-scrollbar {
+width: 10px;
+}
+
+::-webkit-scrollbar-track {
+background-color: hsl(0, 0%, 98%);
+}
+
+::-webkit-scrollbar-thumb {
+background-color: hsl(0, 0%, 80%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+background-color: hsl(0, 0%, 70%);
+}
+
+
+
+
+
+/* REUSED STYLE **/
+
+.container {
+padding-inline: 15px;
+}
+
+.btn {
+color: var(--color, var(--white));
+font-size: var(--fs-4);
+max-width: var(--width, max-content);
+padding: 10px 20px;
+border-radius: var(--radius-10);
+transition: var(--transition-1);
+}
+
+.btn-primary,
+.btn-secondary:is(:hover, :focus) {
+background-color: var(--pumpkin);
+}
+
+.btn-primary:is(:hover, :focus),
+.btn-secondary {
+background-color: var(--russian-violet);
+}
+
+.btn-outline {
+--color: var(--pumpkin);
+--width: 100%;
+text-align: center;
+font-weight: var(--fw-500);
+border: 1px solid var(--cultured-3);
+}
+
+.btn-outline:is(:hover, :focus) {
+background-color: var(--pumpkin);
+color: var(--white);
+}
+
+.section {
+padding-block: var(--section-padding);
+}
+
+.section-subtitle {
+color: var(--pumpkin);
+font-size: var(--fs-3);
+margin-block-end: 5px;
+}
+
+.h1,
+.h2,
+.h3 {
+font-family: var(--ff-roboto);
+}
+
+.h1,
+.h2 {
+font-size: var(--fs-1);
+}
+
+.h2,
+.h3 {
+color: var(--eerie-black);
+}
+
+.h3 {
+font-size: var(--fs-2);
+}
+
+.section-text,
+.card-text {
+font-size: var(--fs-4);
+line-height: 1.8;
+}
+
+.btn-list {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: 10px;
+}
+
+.btn-item-link {
+overflow: hidden;
+border-radius: var(--radius-10);
+}
+
+.btn-item-link .img {
+width: 136px;
+}
+
+.w-100 {
+width: 100%;
+}
+
+.section-title {
+margin-block: 10px 20px;
+}
+
+:is(.features, .blog) :is(.section-subtitle, .section-title) {
+text-align: center;
+}
+
+.img-holder {
+aspect-ratio: var(--width) / var(--height);
+background-color: var(--light-gray);
+}
+
+.img-cover {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: var(--transition-2);
+}
+
+
+/** HEADER **/
+
+
+.header {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+background-color: var(--white);
+padding-block: 15px;
+z-index: 4;
+}
+
+.header.active {
+position: fixed;
+transform: translateY(-100%);
+filter: drop-shadow(var(--shadow-1));
+animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+0% {
+  transform: translateY(-100%);
+}
+
+100% {
+  transform: translateY(0);
+}
+}
+
+.header>.container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.logo {
+color: var(--dark-purple);
+font-family: var(--ff-roboto);
+font-size: 35px;
+font-weight: var(--fw-900);
+}
+
+.nav-toggle-btn {
+background-color: var(--pumpkin);
+color: var(--white);
+font-size: 35px;
+padding: 2px 8px;
+}
+
+.navbar {
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+background-color: var(--white);
+padding-inline: 15px;
+overflow: hidden;
+max-height: 0;
+visibility: hidden;
+transition: 0.25s var(--cubic-out);
+}
+
+.navbar.active {
+max-height: 340px;
+visibility: visible;
+transition-duration: 0.5s;
+}
+
+.navbar-list {
+background-color: var(--cultured-1);
+margin-block-end: 15px;
+padding: 20px 30px;
+}
+
+.navbar-link {
+color: var(--eerie-black);
+font-size: var(--fs-3);
+font-weight: var(--fw-600);
+padding-block: 7px;
+transition: var(--transition-1);
+}
+
+.navbar-link:is(:hover, :focus, .active) {
+color: var(--pumpkin);
+}
+
+.navbar .btn {
+margin-block: 8px;
+}
+
+
+
+
+
+/*-----------------------------------*\
+#HERO
+\*-----------------------------------*/
+
+.hero {
+background-color: var(--russian-violet);
+color: var(--white);
+padding-block-start: calc(var(--section-padding) + 70px);
+}
+
+.hero-content {
+margin-block-end: 20px;
+}
+
+.hero-title {
+margin-block: 15px 20px;
+}
+
+.hero .section-text {
+margin-block-end: 30px;
+}
+
+
+
+/** NOSSO OBJETIVOS **/
+
+.features .section-title {
+margin-block-end: 30px;
+}
+
+.features-list {
+display: grid;
+gap: 10px;
+}
+
+.features-item {
+position: relative;
+transition: var(--transition-2);
+}
+
+.features-item::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 40%;
+background-color: var(--cultured-2);
+border-radius: var(--radius-10);
+z-index: -1;
+}
+
+.features-item:hover {
+transform: translateY(-10px);
+}
+
+.features-card {
+background-color: var(--white);
+box-shadow: var(--shadow-2);
+margin: 20px;
+padding: 20px;
+border-radius: var(--radius-10);
+text-align: center;
+}
+
+.features-card .card-icon {
+color: var(--pumpkin);
+font-size: 35px;
+max-width: max-content;
+margin-inline: auto;
+}
+
+.features-card .card-icon ion-icon {
+--ionicon-stroke-width: 35px;
+}
+
+.features-card .card-title {
+margin-block: 18px 15px;
+}
+
+
+/** SOBRE **/
+
+.about {
+background-color: var(--cultured-3);
+}
+
+.about .about-banner {
+margin-block-end: 20px;
+}
+
+.about .section-text,
+.about-item:not(:last-child) {
+margin-block-end: 25px;
+}
+
+.about-list {
+margin-block-end: 35px;
+}
+
+.about-item {
+display: flex;
+align-items: flex-start;
+gap: 15px;
+}
+
+.about-item .item-icon {
+background-color: var(--pumpkin);
+color: var(--white);
+font-size: 20px;
+padding: 12px;
+border-radius: 50%;
+}
+
+.about-item .item-title {
+margin-block-end: 10px;
+}
+
+
+
+/** BLOG **/
+
+.blog .section-title {
+margin-block-end: 30px;
+}
+
+.blog-list {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 30px;
+}
+
+.blog-list>li {
+max-width: 100%;
+}
+
+.blog-card {
+padding: 15px;
+border-radius: var(--radius-10);
+box-shadow: var(--shadow-2);
+}
+
+.blog-card .card-banner {
+border-radius: var(--radius-10);
+overflow: hidden;
+}
+
+.blog-card:is(:hover, :focus-within) .img-cover {
+transform: scale(1.2);
+}
+
+.blog-card .card-content {
+padding: 15px;
+padding-block-start: 25px;
+}
+
+.blog-card :is(.card-meta-list, .card-meta-item) {
+display: flex;
+align-items: center;
+}
+
+.blog-card .card-meta-list {
+gap: 15px;
+margin-block-end: 15px;
+}
+
+.blog-card .card-meta-item {
+gap: 6px;
+}
+
+.blog-card .card-meta-item ion-icon {
+color: var(--pumpkin);
+font-size: var(--fs-5);
+}
+
+.blog-card .card-meta-text {
+font-size: var(--fs-5);
+}
+
+.blog-card .h3 {
+margin-block-end: 15px;
+}
+
+.blog-card .card-title {
+transition: var(--transition-1);
+}
+
+.blog-card .card-title:is(:hover, :focus) {
+color: var(--pumpkin);
+}
+
+
+/** FOOTER**/
+
+.footer {
+background-color: var(--cultured-3);
+}
+
+.footer-top .container {
+display: grid;
+gap: 30px;
+}
+
+.footer-top .section-text {
+margin-block: 15px 22px;
+}
+
+.social-list {
+display: flex;
+gap: 15px;
+}
+
+.social-link {
+background-color: var(--white);
+padding: 12px;
+border-radius: 50%;
+transition: var(--transition-1);
+}
+
+.social-link:is(:hover, :focus) {
+background-color: var(--pumpkin);
+color: var(--white);
+transform: translateY(-2px);
+}
+
+.footer-list-title {
+color: var(--eerie-black);
+font-family: var(--ff-roboto);
+font-size: var(--fs-2);
+font-weight: var(--fw-700);
+margin-block-end: 20px;
+}
+
+.footer-link {
+font-size: var(--fs-4);
+margin-block-start: 10px;
+transition: var(--transition-1);
+}
+
+.footer-link:is(:hover, :focus),
+.footer-item .item-link:not(.address):is(:hover, :focus) {
+color: var(--pumpkin);
+}
+
+.footer-item {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+margin-block-start: 10px;
+}
+
+.footer-item ion-icon {
+flex-shrink: 0;
+color: var(--pumpkin);
+font-size: 17px;
+margin-block-start: 2px;
+}
+
+.footer-item .item-link {
+font-size: var(--fs-4);
+transition: var(--transition-1);
+}
+
+.footer-bottom {
+padding-block: 20px;
+border-block-start: 1px solid var(--gainsboro);
+}
+
+.copyright {
+font-size: var(--fs-4);
+text-align: center;
+}
+
+.copyright-link {
+color: var(--pumpkin);
+display: inline-block;
+}
+
+
+/** VOLTAO AO INICIO **/
+
+.back-top-btn {
+position: fixed;
+bottom: 30px;
+right: -36px;
+background-color: var(--pumpkin);
+color: var(--white);
+padding: 10px;
+border-radius: 50%;
+opacity: 0;
+visibility: hidden;
+transition: var(--transition-1);
+}
+
+.back-top-btn.active {
+opacity: 1;
+visibility: visible;
+transform: translateX(-51px);
+}
+
+
+/** RESPONSIVEL PRA TELA 575px **/
+
+@media (min-width: 575px) {
+
+/**
+ * REUSED STYLE
+ */
+
+.container {
+  max-width: 540px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+
+/** NOSSOS OBJETIVOS**/
+
+.features-list {
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+}
+
+
+/** FOOTER **/
+
+.footer-top .container {
+  grid-template-columns: 1fr 1fr;
+}
+
+}
+
+
+/** RESPONSIVEL PARA TELA 768px **/
+
+@media (min-width: 768px) {
+
+
+:root {
+
+  /** TIPOGRAFIA**/
+
+  --fs-1: 4.5rem;
+}
+
+
+/**
+ * REUSED STYLE
+ */
+
+.container {
+  max-width: 720px;
+}
+
+.h2 {
+  --fs-1: 3.5rem;
+}
+
+.btn {
+  font-size: unset;
+  padding: 15px 30px;
+}
+
+.btn-list {
+  gap: 20px;
+}
+
+.btn-item-link .img {
+  width: 150px;
+}
+
+
+/**
+ * HEADER
+ */
+
+.navbar .btn {
+  font-size: var(--fs-4);
+  padding: 10px 20px;
+}
+
+
+/** BLOG **/
+
+.blog-list {
+  gap: 20px;
+}
+
+.blog-list>li {
+  max-width: calc(50% - 10px);
+}
+}
+
+/** RESPONSIVEL PRA TELA 992px **/
+
+@media (min-width: 992px) {
+
+
+:root {
+
+  /**
+   * spacing
+   */
+
+  --section-padding: 100px;
+
+}
+
+
+
+/**
+ * REUSED STYLE
+ */
+
+.container {
+  max-width: 960px;
+}
+
+.btn-item-link .img {
+  width: 185px;
+}
+
+
+
+/**
+ * HEADER
+ */
+
+.nav-toggle-btn {
+  display: none;
+}
+
+.navbar,
+.navbar.active,
+.navbar-list {
+  all: unset;
+}
+
+.navbar-list {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+
+
+/**
+ * HERO
+ */
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.hero-content {
+  margin-block-end: 0;
+}
+
+
+
+/** NOSSOS OBJETIVOS **/
+
+.features .section-title {
+  margin-block-end: 40px;
+}
+
+.features-list {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+
+/** SOBRE **/
+
+:is(.about, .about-2, .app) .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.about-banner,
+.app-banner {
+  margin-block-end: 0;
+}
+
+
+/**
+ * BLOG
+ */
+
+.blog-list>li {
+  max-width: calc(33.33% - 13.33px);
+}
+
+
+
+/**
+ * FOOTER
+ */
+
+.footer-top .container {
+  grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr;
+  gap: 50px;
+}
+
+}
+
+
+/**
+* responsivel pra tela 1200px **/
+
+@media (min-width: 1200px) {
+
+/**
+ * CUSTOM PROPERTY
+ */
+
+:root {
+
+  /** tipografia **/
+
+  --fs-1: 5rem;
+
+}
+
+
+
+/**
+ * REUSED STYLE
+ */
+
+.container {
+  max-width: 1180px;
+}
+
+.section-text {
+  --fs-4: 1.5rem;
+}
+
+.h2 {
+  --fs-1: 4rem;
+}
+
+.h3 {
+  --fs-2: 2.2rem;
+}
+
+
+
+/**
+ * HEADER
+ */
+
+.header {
+  padding-block: 20px;
+}
+
+:is(.header, .hero) .container {
+  max-width: unset;
+  padding-inline: 25px;
+}
+
+.header .btn {
+  font-size: var(--fs-3);
+  padding: 14px 30px;
+  border-radius: var(--radius-6);
+  margin-block: 0;
+}
+
+
+/**
+ * HERO
+ */
+
+.hero {
+  --section-padding: 30px;
+}
+
+
+/**
+ * FEATURES
+ */
+
+.features-list {
+  gap: 25px;
+}
+
+.features-card {
+  padding: 30px;
+}
+
+
+/**
+ * BLOG
+ */
+
+.blog-list {
+  gap: 25px;
+}
+
+.blog-list>li {
+  max-width: calc(33.33% - 16.66px);
+}
+
+
+/** FOOTER **/
+
+.footer-list-title {
+  --fs-2: 2.2rem;
+}
+
+.social-link {
+  font-size: 18px;
+  padding: 14px;
+}
+
+.footer-link,
+.copyright {
+  --fs-4: 1.5rem;
+}
+
+
+/** voltar ao ínicio **/
+
+.back-top-btn {
+  font-size: 24px;
+  padding: 13px;
+  bottom: 40px;
+}
+
+.back-top-btn.active {
+  transform: translateX(-80px);
+}
+}
+
+  </style>
+
+
+
+    <title>Mais ou Menos 2000</title>
+</head>
+
+<body id="top">
+
+  <!-- HEADER -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <img src="assets/images/MicrosoftTeams-image.png" width="80" height="110" alt="hero banner" class="w-20">
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list container">
+
+          <li>
+            <a href="#home" class="navbar-link active" data-nav-link>Início</a>
+          </li>
+
+          <li>
+            <a href="#features" class="navbar-link" data-nav-link>Sobre</a>
+          </li>
+
+          <li>
+            <a href="#about" class="navbar-link" data-nav-link>Nossos Objetivos</a>
+          </li>
+
+          <li>
+            <a href="#blog" class="navbar-link" data-nav-link>Blog</a>
+          </li>
+
+          <li>
+            <a href="https://www.youtube.com/@Maisoumenos2000" class="navbar-link" data-nav-link>Youtube</a>
+          </li>
+
+          <li>
+            <a href="index.php" class="btn btn-primary">Faça Login</a>
+          </li>
+         
+          <li>
+            <a href="register.php" class="btn btn-primary">Criar Conta</a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <button class="nav-toggle-btn" aria-label="toggle manu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+
+    </div>
+
+
+  </header>
+
+
+
+
+  <main>
+    <article>
+
+      <!-- INICIO -->
+
+      <section class="section hero" aria-label="hero" id="home">
+        <div class="container">
+
+          <div class="hero-content">
+
+            <p class="section-subtitle">Mais ou Menos 2000</p>
+
+            <h1 class="h1 hero-title">O Blog da Cultura POP</h1>
+
+            <p class="section-text">
+              A Cultura POP teve seu surgimento na década de 70, e desde então vem se modificando, mudando o costume e modo de vida das pessoas.<br>
+              E é por isso que criamos o Mais ou Menos 2000, que mostra o caminho entre as gerações, desde a década de 70 até hoje.<br>
+            </p>
+
+
+
+          </div>
+
+          <figure class="hero-banner">
+            <img src="assets/images/Início.png" width="750" height="800" alt="hero banner" class="w-100">
+          </figure>
+
+        </div>
+      </section>
+
+
+      <!-- O Por que de utilizar nosso site -->
+
+      <section class="section features" id="features" aria-label="features">
+        <div class="container">
+
+          <p class="section-subtitle">Um Pouco Sobre Nós</p>
+
+          <h2 class="h2 section-title">Quem somos</h2>
+
+          <ul class="features-list">
+
+            <li class="features-item">
+              <div class="features-card">
+
+                <div class="card-icon">
+                  <ion-icon name="create-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Nosso projeto</h3>
+
+                <p class="card-text">
+                 Somos alunos da Turma 1 e nosso projeto traz vídeos relacionados à Cultura POP.
+                </p>
+
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="features-card">
+
+                <div class="card-icon">
+                  <ion-icon name="shield-checkmark-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Conteúdo</h3>
+
+                <p class="card-text">
+                  Nós atualizamos nosso site com frequência e nossos vídeos já estão disponíveis no YouTube.
+                </p>
+
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="features-card">
+
+                <div class="card-icon">
+                  <ion-icon name="settings-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Participantes</h3>
+
+                <p class="card-text">
+                  Kaique, Marcos, Juan, Gabriel, Giovanni, Ryan e Luiz.
+                </p>
+
+              </div>
+            </li>
+
+            <li class="features-item">
+              <div class="features-card">
+
+                <div class="card-icon">
+                  <ion-icon name="cube-outline" aria-hidden="true"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Crie uma conta agora mesmo</h3>
+
+                <p class="card-text">
+                  Criando uma conta, é possível comentar em nossas notícias, favoritar e salvar.
+                </p>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+      <!-- SOBRE -->
+
+      <section class="section about" id="about" aria-label="about">
+        <div class="container">
+
+          <figure class="about-banner">
+            <img src="assets/images/Nossos Objetivos.png" width="1262" height="1357" loading="lazy" alt="about banner"
+              class="w-100">
+          </figure>
+
+          <div class="about-content">
+
+            <p class="section-subtitle">Nosso Objetivo</p>
+
+            <h2 class="h2 section-title">Trazer Diversão e Nostalgia</h2>
+
+            <p class="section-text">
+              Esse prjeto tem como objetivo principal a diversão e a lembrança da juventude dos usuários.
+            </p>
+
+            <ul class="about-list">
+
+              <li class="about-item">
+
+                <div class="item-icon">
+                  <ion-icon name="folder" aria-hidden="true"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 item-title">Qualidade de Informação</h3>
+
+                  <p class="item-text">
+                    Temos total compromisso com a veracidade e a confiabilidade das informações contidas no site.
+                  </p>
+                </div>
+
+              </li>
+
+              <li class="about-item">
+
+                <div class="item-icon">
+                  <ion-icon name="pie-chart" aria-hidden="true"></ion-icon>
+                </div>
+
+                <div>
+                  <h3 class="h3 item-title">Retratar a história da Cultura POP</h3>
+
+                  <p class="item-text">
+                    Tudo que postamos aqui ou no canal é um pedaço da história da Cultura POP, que faz com os usuários relembrem sua infância e juventude.
+                  </p>
+                </div>
+
+              </li>
+
+            </ul>
+
+            <a href="#" class="btn btn-secondary">Veja Nossas Últimas Publicações</a>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- BLOG -->
+
+      <section class="section blog" id="blog" aria-label="blog">
+        <div class="container">
+
+          <p class="section-subtitle">Últimas Publicações</p>
+
+          <h2 class="h2 section-title">Nossas Mais Recentes Publicações</h2>
+
+          <ul class="blog-list">
+
+            <li>
+              <div class="blog-card">
+
+                <figure class="card-banner img-holder" style="--width: 768; --height: 558;">
+                  <img src="assets/images/Duna-1200x900.jpg" width="768" height="558" loading="lazy"
+                    alt="Build A Full Web Chat App From Our Scratch" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                      <time class="card-meta-text" datetime="2022-05-22">Novembro 14, 2023</time>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <ion-icon name="chatbox-outline" aria-hidden="true"></ion-icon>
+
+                      <p class="card-meta-text">2 Comentários</p>
+                    </li>
+
+                  </ul>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Zendaya, Timothée Chalamet, Anya Taylor-Joy e Chris Hemsworth no Brasil para a CCXP 2023</a>
+                  </h3>
+
+                  <a href="news1.html" class="btn btn-outline">Leia Mais</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="blog-card">
+
+                <figure class="card-banner img-holder" style="--width: 768; --height: 558;">
+                  <img src="assets/images/roberto carlos .jpg" width="768" height="558" loading="lazy"
+                    alt="Brush Strokes Energize Trees In Paintings" class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+
+                      <time class="card-meta-text" datetime="2022-05-22">Novembro 23, 2023</time>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <ion-icon name="chatbox-outline" aria-hidden="true"></ion-icon>
+
+                      <p class="card-meta-text">12 Comentários</p>
+                    </li>
+
+                  </ul>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Ana Castela e Roberto Carlos ensaiam para especial de fim de ano na Globo</a>
+                  </h3>
+
+                  <a href="news2.html" class="btn btn-outline">Leia Mais</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="blog-card">
+
+                <figure class="card-banner img-holder" style="--width: 768; --height: 558;">
+                  <img src="assets/images/lollapalooza" width="768" height="558" loading="lazy"
+                    alt="Insights on How to Improve Your Teaching." class="img-cover">
+                </figure>
+
+                <div class="card-content">
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                      <time class="card-meta-text" datetime="2022-05-22">Novembro 23,2023</time>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <ion-icon name="chatbox-outline" aria-hidden="true"></ion-icon>
+
+                      <p class="card-meta-text">5 Comentários
+
+                      </p>
+                    </li>
+
+                  </ul>
+
+                  <h3 class="h3">
+                    <a href="#" class="card-title">Lollapalooza 2024 divulga a programação do evento</a>
+                  </h3>
+
+                  <a href="news3.html" class="btn btn-outline">Leia mais</a>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- RODAPÉ -->
+
+  <footer class="footer">
+
+    <div class="section footer-top">
+      <div class="container">
+
+        <div class="footer-brand">
+
+          <a href="#" class="logo">Mais ou Menos 2000</a>
+
+          <p class="section-text">
+            Acesse as redes sociais do nosso projeto e fique por dentro de todas as novidades.
+          </p>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </a>
+            </li>
+
+
+          </ul>
+
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Blog</p>
+          </li>
+
+          <li>
+            <a href="#features" class="footer-link">Sobre nós</a>
+          </li>
+
+          <li>
+            <a href="#features" class="footer-link">Nosso Time</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Entre em Contato </p>
+          </li>
+
+          <li class="footer-item">
+            <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+
+            <a href="tel:+12023459999" class="item-link">+55 (11)94033-5021</a>
+          </li>
+
+          <li class="footer-item">
+            <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+
+            <a href="mailto:supportvast@gmail.com" class="item-link">supportmaisoumenos2000@gmail.com</a>
+          </li>
+
+          <li class="footer-item">
+            <ion-icon name="map-outline" aria-hidden="true"></ion-icon>
+
+            <address class="item-link address">
+              Senac - São Bernardo do Campo
+            </address>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+
+        <p class="copyright">
+          &copy; 2022 Todos os Direitos Reservador a <a href="#" class="copyright-link">Mais ou Menos 2000</a>.
+        </p>
+
+      </div>
+    </div>
+
+  </footer>
+
+
+
+
+
+  <!-- VOLTAR PARA O ÍNICIO -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+
+  <!-- LINK JS -->
+  <script src="./assets/js/script.js" defer></script>
+
+  <!-- ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
